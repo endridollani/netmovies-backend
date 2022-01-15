@@ -1,6 +1,8 @@
 package com.enterprise.netmovies;
 
 import lombok.AllArgsConstructor;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +15,9 @@ import java.util.List;
 @CrossOrigin("*")
 @AllArgsConstructor
 public class MovieController {
-    private final MovieService movieService = new MovieService();
+	
+	@Autowired
+    private MovieService movieService;
     
     @RequestMapping("/latest")
     public List<Movie> getLatestMovies() {
@@ -40,19 +44,14 @@ public class MovieController {
         return movieService.getMovieWatchlist(userId);
     }
     
-    @RequestMapping("/genre/{genre}")
-    public List<Movie> getByGenre(String genre) {
-        return movieService.getByGenre(genre);
-    }
-    
     @RequestMapping("/find/{query}")
     public List<Movie> findMovies(String query) {
         return movieService.findMovies(query);
     }
     
     @RequestMapping("/details/{movieId}")
-    public List<Movie> getMovieDetails(String movieId) {
-        return movieService.getMovieDetails(movieId);
+    public Movie getMovieDetails(String movieId) {
+    	return movieService.getMovieDetails(movieId);
     }
     
     @RequestMapping("/similar/{movieId}")
