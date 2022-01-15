@@ -2,58 +2,80 @@ package com.enterprise.netmovies;
 
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+import java.util.Optional;
+
+import java.util.Arrays;
 import java.util.List;
 
 @AllArgsConstructor
 @Service
 public class MovieService {
+	
+	private String baseURL = "https://api.themoviedb.org/3/";
+	@Value("${moviedb.apiKey}")
+	private String apiKey;
+	private RestTemplate restTemplate = new RestTemplate();
 	@Autowired
     private MovieRepository movieRepository;
+	@Autowired
+    private StudentRepository studentRepository;
 
 
 	public List<Movie> getLatestMovies() {
-		// TODO Auto-generated method stub
-		return null;
+		String requestURL = baseURL + "movie/latest/" + "?api_key=" + apiKey + "&language=en-US";
+		Movie[] result = restTemplate.getForObject(requestURL, Movie[].class);
+		List<Movie> movies = Arrays.asList(result);
+		return movies;
 	}
 
 	public List<Movie> getTrendingMovies() {
-		// TODO Auto-generated method stub
-		return null;
+		String requestURL = baseURL + "trending/movie/week/" + "?api_key=" + apiKey + "&language=en-US";
+		Movie[] result = restTemplate.getForObject(requestURL, Movie[].class);
+		List<Movie> movies = Arrays.asList(result);
+		return movies;
 	}
 
 	public List<Movie> getPopularMovies() {
-		// TODO Auto-generated method stub
-		return null;
+		String requestURL = baseURL + "movie/popular" + "?api_key=" + apiKey + "&language=en-US";
+		Movie[] result = restTemplate.getForObject(requestURL, Movie[].class);
+		List<Movie> movies = Arrays.asList(result);
+		return movies;
 	}
 
 	public List<Movie> getMovieHistory(String userId) {
-		// TODO Auto-generated method stub
+		Optional<Student> student = studentRepository.findById(userId); 
+		//Need to extract the movie id's in history then requesting movierepository to match those ids
+		//Then return Movie List
 		return null;
 	}
 
 	public List<Movie> getSimilarMovies(String movieId) {
-		// TODO Auto-generated method stub
-		return null;
+		String requestURL = baseURL + "movie/" + movieId + "/similar?api_key=" + apiKey + "&language=en-US";
+		Movie[] result = restTemplate.getForObject(requestURL, Movie[].class);
+		List<Movie> movies = Arrays.asList(result);
+		return movies;
 	}
 
-	public List<Movie> getMovieDetails(String movieId) {
-		// TODO Auto-generated method stub
-		return null;
+	public Movie getMovieDetails(String movieId) {
+		String requestURL = baseURL + "movie/" + movieId + "?api_key=" + apiKey + "&language=en-US";
+		Movie movie = restTemplate.getForObject(requestURL, Movie.class);
+		return movie;
 	}
 
 	public List<Movie> findMovies(String query) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public List<Movie> getByGenre(String genre) {
-		// TODO Auto-generated method stub
-		return null;
+		String requestURL = baseURL + "search/movie" + "?api_key=" + apiKey + "&language=en-US&query=" + query;
+		Movie[] result = restTemplate.getForObject(requestURL, Movie[].class);
+		List<Movie> movies = Arrays.asList(result);
+		return movies;
 	}
 
 	public List<Movie> getMovieWatchlist(String userId) {
-		// TODO Auto-generated method stub
+		Optional<Student> student = studentRepository.findById(userId); 
+		//Need to extract the movie id's in watchlist then requesting movierepository to match those ids
+		//Then return Movie List
 		return null;
 	}
 }
