@@ -9,6 +9,7 @@ import java.util.Optional;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.ArrayList;
 
 @AllArgsConstructor
 @Service
@@ -47,9 +48,21 @@ public class MovieService {
 
 	public List<Movie> getMovieHistory(String userId) {
 		Optional<Student> student = studentRepository.findById(userId); 
-		//Need to extract the movie id's in history then requesting movierepository to match those ids
-		//Then return Movie List
-		return null;
+		
+		List<Movie> movieList = new ArrayList<Movie>();
+		
+		if(!student.isEmpty()) {
+			Student st = student.get();
+			
+			List<Movie> movieHistory_ids = st.getMovieHistory();
+			for (int i = 0 ; i < movieHistory_ids.size(); i++) {
+				Movie movie = getMovieDetails(movieHistory_ids.get(i).getTmdb_id());
+				movieList.add(movie);
+			}
+		}
+		
+		
+		return movieList;
 	}
 
 	public List<Movie> getSimilarMovies(String movieId) {
@@ -74,8 +87,20 @@ public class MovieService {
 
 	public List<Movie> getMovieWatchlist(String userId) {
 		Optional<Student> student = studentRepository.findById(userId); 
-		//Need to extract the movie id's in watchlist then requesting movierepository to match those ids
-		//Then return Movie List
-		return null;
+		
+		List<Movie> movieList = new ArrayList<Movie>();
+		
+		if(!student.isEmpty()) {
+			Student st = student.get();
+			
+			List<Movie> movieWatchlist_ids = st.getMovieWatchlist();
+			for (int i = 0 ; i < movieWatchlist_ids.size(); i++) {
+				Movie movie = getMovieDetails(movieWatchlist_ids.get(i).getTmdb_id());
+				movieList.add(movie);
+			}
+		}
+		
+		
+		return movieList;
 	}
 }
