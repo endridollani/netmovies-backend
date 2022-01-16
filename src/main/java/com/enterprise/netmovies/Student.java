@@ -15,7 +15,7 @@ import java.util.List;
 public class Student {
     @Id
     private String id;
-    private String firsName;
+    private String firstName;
     private String lastName;
     @Indexed(unique = true)
     private String email;
@@ -24,6 +24,8 @@ public class Student {
     private List<String> favoriteSubjects;
     private BigDecimal totalSpentInBooks;
     private LocalDateTime created;
+    private List<Movie> movieWatchlist;
+    private List<Movie> movieHistory;
 
     public Student(String firsName,
                    String lastName,
@@ -33,7 +35,7 @@ public class Student {
                    List<String> favoriteSubjects,
                    BigDecimal totalSpentInBooks,
                    LocalDateTime created) {
-        this.firsName = firsName;
+        this.firstName = firsName;
         this.lastName = lastName;
         this.email = email;
         this.gender = gender;
@@ -42,6 +44,92 @@ public class Student {
         this.totalSpentInBooks = totalSpentInBooks;
         this.created = created;
     }
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Gender getGender() {
+		return gender;
+	}
+
+	public void setGender(Gender gender) {
+		this.gender = gender;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	public List<String> getFavoriteSubjects() {
+		return favoriteSubjects;
+	}
+
+	public void setFavoriteSubjects(List<String> favoriteSubjects) {
+		this.favoriteSubjects = favoriteSubjects;
+	}
+
+	public BigDecimal getTotalSpentInBooks() {
+		return totalSpentInBooks;
+	}
+
+	public void setTotalSpentInBooks(BigDecimal totalSpentInBooks) {
+		this.totalSpentInBooks = totalSpentInBooks;
+	}
+
+	public LocalDateTime getCreated() {
+		return created;
+	}
+
+	public List<Movie> getMovieWatchlist() {
+		return movieWatchlist;
+	}
+
+	public void setMovieWatchlist(List<Movie> movieWatchlist) {
+		this.movieWatchlist = movieWatchlist;
+	}
+
+	public List<Movie> getMovieHistory() {
+		return movieHistory;
+	}
+
+	public void setMovieHistory(List<Movie> movieHistory) {
+		this.movieHistory = movieHistory;
+	}
+    
+    
 
 
 }
