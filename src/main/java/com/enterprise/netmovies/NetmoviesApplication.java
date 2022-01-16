@@ -1,5 +1,5 @@
 package com.enterprise.netmovies;
-
+import java.lang.String;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -22,18 +22,12 @@ public class NetmoviesApplication {
 	CommandLineRunner runner(
 			StudentRepository repository, MongoTemplate mongoTemplate){
 		return args -> {
-			Address address = new Address(
-					"England",
-					"London",
-					"OTR"
-			);
 			String email = "johndoe@gmail.com";
 			Student student = new Student(
 					"John",
 					"Doe",
 					email,
 					Gender.MALE,
-					address,
 					List.of("Computer Science","Maths"),
 					BigDecimal.TEN,
 					LocalDateTime.now()
