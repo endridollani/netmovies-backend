@@ -19,7 +19,6 @@ public class Student {
     private String lastName;
     @Indexed(unique = true)
     private String email;
-    private Gender gender;
     private List<String> favoriteSubjects;
     private BigDecimal totalSpentInBooks;
     private LocalDateTime created;
@@ -29,14 +28,12 @@ public class Student {
     public Student(String firstName,
                    String lastName,
                    String email,
-                   Gender gender,
                    List<String> favoriteSubjects,
                    BigDecimal totalSpentInBooks,
                    LocalDateTime created) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.gender = gender;
         this.favoriteSubjects = favoriteSubjects;
         this.totalSpentInBooks = totalSpentInBooks;
         this.created = created;
@@ -72,14 +69,6 @@ public class Student {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public Gender getGender() {
-		return gender;
-	}
-
-	public void setGender(Gender gender) {
-		this.gender = gender;
 	}
 
 	public List<String> getFavoriteSubjects() {

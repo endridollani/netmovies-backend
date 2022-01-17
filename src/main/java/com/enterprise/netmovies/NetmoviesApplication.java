@@ -26,7 +26,6 @@ public class NetmoviesApplication {
 					"John",
 					"Doe",
 					email,
-					Gender.MALE,
 					List.of("Computer Science","Maths"),
 					BigDecimal.TEN,
 					LocalDateTime.now()
