@@ -14,7 +14,7 @@ import java.util.ArrayList;
 @AllArgsConstructor
 @Service
 public class MovieService {
-	
+	public MovieService(){}
 	private String baseURL = "https://api.themoviedb.org/3/";
 	@Value("${moviedb.apiKey}")
 	private String apiKey;

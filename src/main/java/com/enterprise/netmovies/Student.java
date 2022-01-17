@@ -26,14 +26,14 @@ public class Student {
     private List<Movie> movieWatchlist;
     private List<Movie> movieHistory;
 
-    public Student(String firsName,
+    public Student(String firstName,
                    String lastName,
                    String email,
                    Gender gender,
                    List<String> favoriteSubjects,
                    BigDecimal totalSpentInBooks,
                    LocalDateTime created) {
-        this.firstName = firsName;
+        this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.gender = gender;
