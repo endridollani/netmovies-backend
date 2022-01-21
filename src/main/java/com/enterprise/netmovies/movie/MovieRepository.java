@@ -1,10 +1,7 @@
-package com.enterprise.netmovies;
+package com.enterprise.netmovies.movie;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-import java.util.Optional;
-
 public interface MovieRepository extends MongoRepository<Movie, String> {
-    
 
 }
