@@ -20,37 +20,37 @@ public class MovieController {
     private MovieService movieService;
 
     @RequestMapping("api/v1/movies/latest")
-    public List<com.enterprise.netmovies.Movie> getLatestMovies() {
+    public List<Movie> getLatestMovies() {
         return movieService.getLatestMovies();
     }
 
     @RequestMapping("api/v1/movies/trending")
-    public List<com.enterprise.netmovies.Movie> getTrendingMovies() {
+    public List<Movie> getTrendingMovies() {
         return movieService.getTrendingMovies();
     }
 
     @RequestMapping("api/v1/movies/popular")
-    public List<com.enterprise.netmovies.Movie> getPopularMovies() {
+    public List<Movie> getPopularMovies() {
         return movieService.getPopularMovies();
     }
 
     @RequestMapping("api/v1/movies/history/{userId}")
-    public List<com.enterprise.netmovies.Movie> getMovieHistory(String userId) {
+    public List<Movie> getMovieHistory(Long userId) {
         return movieService.getMovieHistory(userId);
     }
 
     @RequestMapping("api/v1/movies/watchlist/{userId}")
-    public List<com.enterprise.netmovies.Movie> getMovieWatchlist(String userId) {
+    public List<Movie> getMovieWatchlist(Long userId) {
         return movieService.getMovieWatchlist(userId);
     }
 
     @RequestMapping("api/v1/movies/find/{query}")
-    public List<com.enterprise.netmovies.Movie> findMovies(String query) {
+    public List<Movie> findMovies(String query) {
         return movieService.findMovies(query);
     }
 
     @RequestMapping("api/v1/movies/details/{movieId}")
-    public com.enterprise.netmovies.Movie getMovieDetails(String movieId) {
+    public Movie getMovieDetails(String movieId) {
         return movieService.getMovieDetails(movieId);
     }
 
