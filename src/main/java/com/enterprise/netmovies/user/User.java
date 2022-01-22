@@ -1,8 +1,13 @@
 package com.enterprise.netmovies.user;
 
+import java.util.List;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import com.enterprise.netmovies.movie.Movie;
+import com.enterprise.netmovies.series.Series;
 
 @Document(collection = "User")
 
@@ -20,6 +25,11 @@ public class User {
     private String lastName;
     private String email;
     private String password;
+    
+    private List<Movie> movieWatchlist;
+    private List<Movie> movieHistory;
+    private List<Series> seriesWatchlist;
+    private List<Series> seriesHistory;
 
     public User(){
 
@@ -71,5 +81,37 @@ public class User {
     public void setId(long id) {
         this.id = id;
     }
+
+    public List<Movie> getMovieWatchlist() {
+		return movieWatchlist;
+	}
+
+	public void setMovieWatchlist(List<Movie> movieWatchlist) {
+		this.movieWatchlist = movieWatchlist;
+	}
+
+	public List<Movie> getMovieHistory() {
+		return movieHistory;
+	}
+
+	public void setMovieHistory(List<Movie> movieHistory) {
+		this.movieHistory = movieHistory;
+	}
+    
+	public List<Series> getSeriesWatchlist() {
+		return seriesWatchlist;
+	}
+
+	public void setSeriesWatchlist(List<Series> seriesWatchlist) {
+		this.seriesWatchlist = seriesWatchlist;
+	}
+
+	public List<Series> getSeriesHistory() {
+		return seriesHistory;
+	}
+
+	public void setSeriesHistory(List<Series> seriesHistory) {
+		this.seriesHistory = seriesHistory;
+	}
 
 }
