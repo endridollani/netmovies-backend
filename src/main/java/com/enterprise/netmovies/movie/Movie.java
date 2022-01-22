@@ -2,11 +2,10 @@ package com.enterprise.netmovies.movie;
 
 
 import java.util.List;
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.enterprise.netmovies.series.*;
 
 @JsonIgnoreProperties
 public class Movie {

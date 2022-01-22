@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import java.util.Optional;
-
+import com.enterprise.netmovies.user.*;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
@@ -20,43 +20,41 @@ public class MovieService {
     private String apiKey;
     private RestTemplate restTemplate = new RestTemplate();
     @Autowired
-    private MovieRepository movieRepository;
-    @Autowired
-    private StudentRepository studentRepository;
+    private UserRepository userRepository;
 
 
-    public List<com.enterprise.netmovies.Movie> getLatestMovies() {
+    public List<Movie> getLatestMovies() {
         String requestURL = baseURL + "movie/latest/" + "?api_key=" + apiKey + "&language=en-US";
-        com.enterprise.netmovies.Movie[] result = restTemplate.getForObject(requestURL, com.enterprise.netmovies.Movie[].class);
-        List<com.enterprise.netmovies.Movie> movies = Arrays.asList(result);
+        Movie[] result = restTemplate.getForObject(requestURL, Movie[].class);
+        List<Movie> movies = Arrays.asList(result);
         return movies;
     }
 
-    public List<com.enterprise.netmovies.Movie> getTrendingMovies() {
+    public List<Movie> getTrendingMovies() {
         String requestURL = baseURL + "trending/movie/week/" + "?api_key=" + apiKey + "&language=en-US";
-        com.enterprise.netmovies.Movie[] result = restTemplate.getForObject(requestURL, com.enterprise.netmovies.Movie[].class);
-        List<com.enterprise.netmovies.Movie> movies = Arrays.asList(result);
+        Movie[] result = restTemplate.getForObject(requestURL, Movie[].class);
+        List<Movie> movies = Arrays.asList(result);
         return movies;
     }
 
-    public List<com.enterprise.netmovies.Movie> getPopularMovies() {
+    public List<Movie> getPopularMovies() {
         String requestURL = baseURL + "movie/popular" + "?api_key=" + apiKey + "&language=en-US";
-        com.enterprise.netmovies.Movie[] result = restTemplate.getForObject(requestURL, com.enterprise.netmovies.Movie[].class);
-        List<com.enterprise.netmovies.Movie> movies = Arrays.asList(result);
+        Movie[] result = restTemplate.getForObject(requestURL, Movie[].class);
+        List<Movie> movies = Arrays.asList(result);
         return movies;
     }
 
-    public List<com.enterprise.netmovies.Movie> getMovieHistory(String userId) {
-        Optional<Student> student = studentRepository.findById(userId);
+    public List<Movie> getMovieHistory(Long userId) {
+        Optional<User> user = userRepository.findById(userId);
 
-        List<com.enterprise.netmovies.Movie> movieList = new ArrayList<com.enterprise.netmovies.Movie>();
+        List<Movie> movieList = new ArrayList<Movie>();
 
-        if(!student.isEmpty()) {
-            Student st = student.get();
+        if(!user.isEmpty()) {
+            User usr = user.get();
 
-            List<com.enterprise.netmovies.Movie> movieHistory_ids = st.getMovieHistory();
+            List<Movie> movieHistory_ids = usr.getMovieHistory();
             for (int i = 0 ; i < movieHistory_ids.size(); i++) {
-                com.enterprise.netmovies.Movie movie = getMovieDetails(movieHistory_ids.get(i).getTmdb_id());
+                Movie movie = getMovieDetails(movieHistory_ids.get(i).getTmdb_id());
                 movieList.add(movie);
             }
         }
@@ -65,35 +63,35 @@ public class MovieService {
         return movieList;
     }
 
-    public List<com.enterprise.netmovies.Movie> getSimilarMovies(String movieId) {
+    public List<Movie> getSimilarMovies(String movieId) {
         String requestURL = baseURL + "movie/" + movieId + "/similar?api_key=" + apiKey + "&language=en-US";
-        com.enterprise.netmovies.Movie[] result = restTemplate.getForObject(requestURL, com.enterprise.netmovies.Movie[].class);
-        List<com.enterprise.netmovies.Movie> movies = Arrays.asList(result);
+        Movie[] result = restTemplate.getForObject(requestURL, Movie[].class);
+        List<Movie> movies = Arrays.asList(result);
         return movies;
     }
 
-    public com.enterprise.netmovies.Movie getMovieDetails(String movieId) {
+    public Movie getMovieDetails(String movieId) {
         String requestURL = baseURL + "movie/" + movieId + "?api_key=" + apiKey + "&language=en-US";
-        com.enterprise.netmovies.Movie movie = restTemplate.getForObject(requestURL, com.enterprise.netmovies.Movie.class);
+        Movie movie = restTemplate.getForObject(requestURL, Movie.class);
         return movie;
     }
 
-    public List<com.enterprise.netmovies.Movie> findMovies(String query) {
+    public List<Movie> findMovies(String query) {
         String requestURL = baseURL + "search/movie" + "?api_key=" + apiKey + "&language=en-US&query=" + query;
-        com.enterprise.netmovies.Movie[] result = restTemplate.getForObject(requestURL, com.enterprise.netmovies.Movie[].class);
-        List<com.enterprise.netmovies.Movie> movies = Arrays.asList(result);
+        Movie[] result = restTemplate.getForObject(requestURL, Movie[].class);
+        List<Movie> movies = Arrays.asList(result);
         return movies;
     }
 
-    public List<com.enterprise.netmovies.Movie> getMovieWatchlist(String userId) {
-        Optional<Student> student = studentRepository.findById(userId);
+    public List<Movie> getMovieWatchlist(Long userId) {
+        Optional<User> user = userRepository.findById(userId);
 
-        List<com.enterprise.netmovies.Movie> movieList = new ArrayList<com.enterprise.netmovies.Movie>();
+        List<Movie> movieList = new ArrayList<Movie>();
 
-        if(!student.isEmpty()) {
-            Student st = student.get();
+        if(!user.isEmpty()) {
+            User usr = user.get();
 
-            List<com.enterprise.netmovies.Movie> movieWatchlist_ids = st.getMovieWatchlist();
+            List<Movie> movieWatchlist_ids = usr.getMovieWatchlist();
             for (int i = 0 ; i < movieWatchlist_ids.size(); i++) {
                 Movie movie = getMovieDetails(movieWatchlist_ids.get(i).getTmdb_id());
                 movieList.add(movie);
