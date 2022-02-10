@@ -1,5 +1,8 @@
 package com.enterprise.netmovies.config;
 
+import com.enterprise.netmovies.services.CustomUserService;
+import lombok.Data;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -13,9 +16,15 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
+    @Autowired
+    private CustomUserService userService;
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        //In-Memory Authentication
         auth.inMemoryAuthentication().withUser("Endri").password(passwordEncoder().encode("test123")).authorities("User","Admin");
+        //Database Authentication. The Basic Auth will be run with this command.
+        auth.userDetailsService(userService).passwordEncoder(passwordEncoder());
     }
 
     @Bean
