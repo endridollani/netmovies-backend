@@ -1,4 +1,5 @@
 package com.enterprise.netmovies;
+
 import com.enterprise.netmovies.models.Authority;
 import com.enterprise.netmovies.models.User;
 import com.enterprise.netmovies.repository.UserDetailsRepository;
@@ -31,12 +32,12 @@ public class NetmoviesApplication {
 	protected void init(){
 		List<Authority> authorityList = new ArrayList<>();
 		authorityList.add(createAuthority("USER","User role"));
-		authorityList.add(createAuthority("ADMIN","Admin role"));
+//		authorityList.add(createAuthority("ADMIN","Admin role"));
 		User user = new User();
-		user.setUserName("john033");
+		user.setUserName("john007");
 		user.setFirstName("John");
 		user.setLastName("Doe");
-		user.setPassword(passwordEncoder.encode("hanamontana123"));
+		user.setPassword(passwordEncoder.encode("test@123"));
 		user.setEnabled(true);
 		user.setAuthorities(authorityList);
 		userDetailsRepository.save(user);

@@ -3,9 +3,7 @@ package com.enterprise.netmovies.models;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.DocumentReference;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -15,14 +13,12 @@ import java.util.List;
 
 @Data
 @Document(collection = "AUTH_USER_DETAILS")
-
 public class User implements UserDetails {
 
 
     @Id
     private String id;
 
-    @Indexed(unique = true)
     private String userName;
     private String password;
     private Date createdAt;
@@ -35,10 +31,11 @@ public class User implements UserDetails {
     private boolean enabled = true;
 
     //Mapping Authority document with User document
-    @DocumentReference(collection = "AUTH_AUTHORITY")
+//    @DocumentReference(collection = "AUTH_AUTHORITY")
     private List<Authority> authorities;
 
     @Override
+
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return authorities;
     }
@@ -55,7 +52,7 @@ public class User implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return this.enabled;
     }
 
     @Override
