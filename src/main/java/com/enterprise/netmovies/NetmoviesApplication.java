@@ -34,10 +34,10 @@ public class NetmoviesApplication {
 		authorityList.add(createAuthority("USER","User role"));
 //		authorityList.add(createAuthority("ADMIN","Admin role"));
 		User user = new User();
-		user.setUserName("john007");
-		user.setFirstName("John");
+		user.setUserName("kapedani23");
+		user.setFirstName("Kapo");
 		user.setLastName("Doe");
-		user.setPassword(passwordEncoder.encode("test@123"));
+		user.setPassword(passwordEncoder.encode("test@23"));
 		user.setEnabled(true);
 		user.setAuthorities(authorityList);
 		userDetailsRepository.save(user);

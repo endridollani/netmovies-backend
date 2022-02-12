@@ -3,10 +3,12 @@ package com.enterprise.netmovies.models;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -32,7 +34,7 @@ public class User implements UserDetails {
 
     //Mapping Authority document with User document
 //    @DocumentReference(collection = "AUTH_AUTHORITY")
-    private List<Authority> authorities;
+    private Collection<Authority> authorities = new ArrayList<>();
 
     @Override
 
