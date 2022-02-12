@@ -18,6 +18,11 @@ public class Authority implements GrantedAuthority {
     @Field(name = "ROLE_DESCRIPTION")
     private String roleDescription;
 
+    public Authority(){}
+    public Authority(String roleCode,String roleDescription){
+        this.roleCode = roleCode;
+        this.roleDescription = roleDescription;
+    }
     @Override
     public String getAuthority() {
         return roleCode;
