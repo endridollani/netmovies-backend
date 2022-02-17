@@ -37,6 +37,8 @@ public class NetmoviesApplication {
 //		user.setPassword(passwordEncoder.encode("test@1223"));
 //		user.setWatchListMovies("803114");
 //		user.setWatchListSeries("1402");
+//		user.setHistoryMovies("597208");
+//		user.setHistorySeries("2778");
 //		user.setEnabled(true);
 //		user.setAuthorities(authorityList);
 //		userDetailsRepository.save(user);

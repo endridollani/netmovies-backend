@@ -34,8 +34,8 @@ public class User implements UserDetails {
 
     private Collection<String> watchListMovies = new ArrayList<>();
     private Collection<String> watchListSeries = new ArrayList<>();
-    private Collection<String> watchedMovies;
-    private Collection<String> watchedSeries;
+    private Collection<String> historyMovies = new ArrayList<>();
+    private Collection<String> historySeries = new ArrayList<>();
 
     public Collection<String> getWatchListMovies() {
         return watchListMovies;
@@ -43,6 +43,10 @@ public class User implements UserDetails {
 
     public void setWatchListMovies(String addedMovie) {
         this.watchListMovies.add(addedMovie);
+    }
+
+    public void deleteWatchlistMovie(String movieId) {
+        watchListMovies.remove(movieId);
     }
 
     public Collection<String> getWatchListSeries() {
@@ -53,22 +57,33 @@ public class User implements UserDetails {
         this.watchListSeries.add(addedSerie);
     }
 
-    public Collection<String> getWatchedMovies() {
-        return watchedMovies;
+    public void deleteWatchlistSeries(String seriesId) {
+        watchListSeries.remove(seriesId);
     }
 
-    public void setWatchedMovies(Collection<String> watchedMovies) {
-        this.watchedMovies = watchedMovies;
+    public Collection<String> getHistoryMovies() {
+        return historyMovies;
     }
 
-    public Collection<String> getWatchedSeries() {
-        return watchedSeries;
+    public void setHistoryMovies(String movieId) {
+        this.historyMovies.add(movieId);
     }
 
-    public void setWatchedSeries(Collection<String> watchedSeries) {
-        this.watchedSeries = watchedSeries;
+    public void deleteHistoryMovie(String movieId) {
+        historyMovies.remove(movieId);
     }
 
+    public Collection<String> getHistorySeries() {
+        return historySeries;
+    }
+
+    public void setHistorySeries(String serieId) {
+        this.historySeries.add(serieId);
+    }
+
+    public void deleteHistorySeries(String seriesId) {
+        historySeries.remove(seriesId);
+    }
 
 
     private boolean enabled = true;

@@ -58,6 +58,18 @@ public class UserInfo {
         this.watchlistMovies = watchlistMovies;
     }
 
+    public Collection<String> getHistoryMovies() {return this.historyMovies;}
+    public Collection<String> getHistorySeries() {return this.historySeries;}
+
+    public void setHistoryMovies(Collection<String> historyMovies){
+        this.historyMovies = historyMovies;
+    }
+
+
+    public void setHistorySeries(Collection<String> historySeries){
+        this.historySeries = historySeries;
+    }
+
     public void setWatchlistSeries(Collection<String> watchlistSeries){
         this.watchlistSeries = watchlistSeries;
     }

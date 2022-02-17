@@ -29,6 +29,8 @@ public class AuthenticationController {
     @Autowired
     JWTTokenHelper jWTTokenHelper;
 
+
+
     @Autowired
     private UserDetailsService userDetailsService;
 
@@ -61,9 +63,14 @@ public class AuthenticationController {
         userInfo.setLastName(userObj.getLastName());
         userInfo.setRoles(userObj.getAuthorities().toArray());
         userInfo.setWatchlistSeries(userObj.getWatchListSeries());
+        userInfo.setHistoryMovies(userObj.getHistoryMovies());
+        userInfo.setHistorySeries(userObj.getHistorySeries());
         //Movies
         userInfo.setWatchlistMovies(userObj.getWatchListMovies());
         return ResponseEntity.ok(userInfo);
 
     }
+
+
+
 }
