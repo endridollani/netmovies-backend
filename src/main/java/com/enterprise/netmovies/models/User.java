@@ -3,7 +3,7 @@ package com.enterprise.netmovies.models;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,6 +21,7 @@ public class User implements UserDetails {
     @Id
     private String id;
 
+    @Indexed(unique = true)
     private String userName;
     private String password;
     private Date createdAt;
@@ -30,6 +31,46 @@ public class User implements UserDetails {
     private String lastName;
     private String email;
     private String phoneNumber;
+
+    private Collection<String> watchListMovies = new ArrayList<>();
+    private Collection<String> watchListSeries = new ArrayList<>();
+    private Collection<String> watchedMovies;
+    private Collection<String> watchedSeries;
+
+    public Collection<String> getWatchListMovies() {
+        return watchListMovies;
+    }
+
+    public void setWatchListMovies(String addedMovie) {
+        this.watchListMovies.add(addedMovie);
+    }
+
+    public Collection<String> getWatchListSeries() {
+        return watchListSeries;
+    }
+
+    public void setWatchListSeries(String  addedSerie) {
+        this.watchListSeries.add(addedSerie);
+    }
+
+    public Collection<String> getWatchedMovies() {
+        return watchedMovies;
+    }
+
+    public void setWatchedMovies(Collection<String> watchedMovies) {
+        this.watchedMovies = watchedMovies;
+    }
+
+    public Collection<String> getWatchedSeries() {
+        return watchedSeries;
+    }
+
+    public void setWatchedSeries(Collection<String> watchedSeries) {
+        this.watchedSeries = watchedSeries;
+    }
+
+
+
     private boolean enabled = true;
 
     //Mapping Authority document with User document

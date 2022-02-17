@@ -1,7 +1,6 @@
 package com.enterprise.netmovies;
 
 import com.enterprise.netmovies.models.Authority;
-import com.enterprise.netmovies.models.User;
 import com.enterprise.netmovies.repository.UserDetailsRepository;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +9,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.annotation.PostConstruct;
-import java.util.ArrayList;
-import java.util.List;
 
 
 @Data
@@ -30,17 +27,19 @@ public class NetmoviesApplication {
 
 	@PostConstruct
 	protected void init(){
-		List<Authority> authorityList = new ArrayList<>();
-		authorityList.add(createAuthority("USER","User role"));
-//		authorityList.add(createAuthority("ADMIN","Admin role"));
-		User user = new User();
-		user.setUserName("kapedani23");
-		user.setFirstName("Kapo");
-		user.setLastName("Doe");
-		user.setPassword(passwordEncoder.encode("test@23"));
-		user.setEnabled(true);
-		user.setAuthorities(authorityList);
-		userDetailsRepository.save(user);
+//		List<Authority> authorityList = new ArrayList<>();
+//		authorityList.add(createAuthority("USER","User role"));
+////		authorityList.add(createAuthority("ADMIN","Admin role"));
+//		User user = new User();
+//		user.setUserName("kapedani23");
+//		user.setFirstName("Kapo");
+//		user.setLastName("Doe");
+//		user.setPassword(passwordEncoder.encode("test@1223"));
+//		user.setWatchListMovies("803114");
+//		user.setWatchListSeries("1402");
+//		user.setEnabled(true);
+//		user.setAuthorities(authorityList);
+//		userDetailsRepository.save(user);
 	}
 
 	private Authority createAuthority(String roleCode,String roleDescription){

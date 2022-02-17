@@ -55,14 +55,15 @@ public class AuthenticationController {
         User userObj=(User) userDetailsService.loadUserByUsername(user.getName());
 
         UserInfo userInfo=new UserInfo();
+
+        userInfo.setUserName(userObj.getUserName());
         userInfo.setFirstName(userObj.getFirstName());
         userInfo.setLastName(userObj.getLastName());
         userInfo.setRoles(userObj.getAuthorities().toArray());
-
-
+        userInfo.setWatchlistSeries(userObj.getWatchListSeries());
+        //Movies
+        userInfo.setWatchlistMovies(userObj.getWatchListMovies());
         return ResponseEntity.ok(userInfo);
-
-
 
     }
 }
